@@ -25,3 +25,18 @@ This Course is using the Apache Spark 3.x. I have tested all the source code and
 </p>
 
 </div>
+
+Commands used:
+
+Must run spark (from docker or command line) prior to running zeppelin from docker.
+
+docker run -it --rm -p 4040:4040 --name spark3.0-centos8 -h localhost leartingjournal?spark:spark3.0-centos8
+
+docker run -u -p 8080:8080 --rm -v c:\logs:/logs -v C:\notebook:/notebook -e ZEPPELIN_LOG_DIR='/logs' -e ZEPPELIN_NOTEBOOK_DIR='/notebook' --name zeppelin apache/zeppelin:0.10.0
+
+
+Another alternative: clone spark-zeppelin-docker project from github and follow the instructions
+Data foldel under the project is mounted under /srv/data.
+
+Spark-shell works on local if SPARK_HOME is set to c:/spark.
+
