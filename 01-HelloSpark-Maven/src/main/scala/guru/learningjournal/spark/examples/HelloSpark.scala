@@ -20,10 +20,15 @@ object HelloSpark extends Serializable {
     }
 
     logger.info("Starting Hello Spark")
+//    val sparkAppConf = new SparkConf()
+//    sparkAppConf.set("spark.app.name", "Hello Spark")
+//    sparkAppConf.set("spark.master", "Local[3]")
+
     val spark = SparkSession.builder()
       .config(getSparkAppConf)
       .getOrCreate()
-    //logger.info("spark.conf=" + spark.conf.getAll.toString())
+
+    logger.info("spark.conf=" + spark.conf.getAll.toString())
 
     val surveyRawDF = loadSurveyDF(spark, args(0))
     val partitionedSurveyDF = surveyRawDF.repartition(2)
