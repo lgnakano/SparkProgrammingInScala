@@ -32,8 +32,10 @@ object GroupingDemo extends Serializable {
       .agg(NumInvoices, TotalQuantity, InvoiceValue)
 
     exSummaryDF.coalesce(1)
+      .sort("Country", "WeekNumber")
       .write
-      .format("parquet")
+//      .format("parquet")
+      .format("csv")
       .mode("overwrite")
       .save("output")
 

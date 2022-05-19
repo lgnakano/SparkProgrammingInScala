@@ -20,18 +20,19 @@ object SparkSQLTableDemo extends Serializable {
 
     import spark.sql
     sql("CREATE DATABASE IF NOT EXISTS AIRLINE_DB")
-//    sql("USE AIRLINE_DB")
+    sql("USE AIRLINE_DB")
 
-    spark.catalog.setCurrentDatabase("AIRLINE_DB")
+//    spark.catalog.setCurrentDatabase("AIRLINE_DB")
 
     flightTimeParquetDF.write
       .mode(SaveMode.Overwrite)
-      .format("parquet")
-//      .format("csv")
+//      .format("parquet")
+      .format("csv")
 //      .partitionBy("ORIGIN", "OP_CARRIER")
       .bucketBy(5, "ORIGIN", "OP_CARRIER")
       .sortBy("ORIGIN", "OP_CARRIER")
-      .saveAsTable("AIRLINE_DB.flight_data")
+//      .saveAsTable("AIRLINE_DB.flight_data")
+      .saveAsTable("flight_data")
 
     spark.catalog.listTables("AIRLINE_DB").show()
 
